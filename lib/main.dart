@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -64,13 +65,32 @@ class CalculateInfo extends StatefulWidget {
 }
 
 class _CalculateInfoState extends State<CalculateInfo> {
-  double inicial = 0;
-  double mensal = 0;
-  double percent = 0;
-  int periodo = 0;
+  final inicialController = TextEditingController();
+  final mensalController = TextEditingController();
+  final percentController = TextEditingController();
+  final periodoController = TextEditingController();
+
+  double resultado = 0;
+
+  @override
+  void dispose(){
+    inicialController.dispose();
+    mensalController.dispose();
+    percentController.dispose();
+    periodoController.dispose();
+    super.dispose();
+  }
 
   void calcular(){
-    print("Hello");
+    // Converte os dados
+    double inicial = double.parse(inicialController.text);
+    double mensal = double.parse(mensalController.text);
+    double percent = double.parse(percentController.text);
+    int periodo = int.parse(periodoController.text);
+
+    setState(() {
+      resultado = (inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo);
+    });
   }
 
   @override
@@ -87,7 +107,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                 padding: const EdgeInsets.all(6),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: Text(
@@ -101,6 +121,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: TextField(
+                          controller: inicialController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -126,21 +147,23 @@ class _CalculateInfoState extends State<CalculateInfo> {
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: TextField(
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(),
-                              hintText: 'R\$ 0,00',
-                              hintStyle: TextStyle(
+                            controller: mensalController,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(),
+                                hintText: 'R\$ 0,00',
+                                hintStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey
-                              )
+                               )
                           ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: TextField(
+                          controller: percentController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -156,6 +179,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: TextField(
+                          controller: periodoController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
@@ -171,7 +195,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: Text(
-                          'Resultado: R\$ 0,00',
+                          'Resultado: R\$ ${resultado}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16
