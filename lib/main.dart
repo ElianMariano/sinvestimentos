@@ -81,6 +81,12 @@ class _CalculateInfoState extends State<CalculateInfo> {
     super.dispose();
   }
 
+  void limpar(){
+    setState(() {
+      resultado = 0;
+    });
+  }
+
   void calcular(){
     // Converte os dados
     double inicial = double.parse(inicialController.text);
@@ -88,9 +94,16 @@ class _CalculateInfoState extends State<CalculateInfo> {
     double percent = double.parse(percentController.text);
     int periodo = int.parse(periodoController.text);
 
+    // double valor = (inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo);
+
     setState(() {
-      resultado = (inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo);
+      resultado = double.parse(((inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo)).toStringAsFixed(2));
     });
+
+    inicialController.clear();
+    mensalController.clear();
+    percentController.clear();
+    periodoController.clear();
   }
 
   @override
@@ -126,7 +139,8 @@ class _CalculateInfoState extends State<CalculateInfo> {
                               filled: true,
                               fillColor: Colors.white,
                               border: OutlineInputBorder(),
-                              hintText: 'R\$ 0,00',
+                              hintText: '0,00',
+                              prefixText: 'R\$ ',
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey
@@ -152,7 +166,8 @@ class _CalculateInfoState extends State<CalculateInfo> {
                                 filled: true,
                                 fillColor: Colors.white,
                                 border: OutlineInputBorder(),
-                                hintText: 'R\$ 0,00',
+                                hintText: '0,00',
+                                prefixText: 'R\$ ',
                                 hintStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey
@@ -227,6 +242,21 @@ class _CalculateInfoState extends State<CalculateInfo> {
                 ),
               style: TextButton.styleFrom(
                 backgroundColor: const Color(0xff03e29f),
+                minimumSize: const Size(300, 20),
+              ),
+            ),
+            TextButton(
+              onPressed: limpar,
+              child: const Text(
+                'Limpar',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white
+                ),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: const Color(0xfff54657),
                 minimumSize: const Size(300, 20),
               ),
             ),
