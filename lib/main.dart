@@ -94,8 +94,6 @@ class _CalculateInfoState extends State<CalculateInfo> {
     double percent = double.parse(percentController.text);
     int periodo = int.parse(periodoController.text);
 
-    // double valor = (inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo);
-
     setState(() {
       resultado = double.parse(((inicial + mensal*periodo) * pow((1 + (percent*0.01)), periodo)).toStringAsFixed(2));
     });
@@ -113,7 +111,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
         child: Column(
           children: [
             const SizedBox(
-              height: 50,
+              height: 65,
             ),
             Container(
               child: Padding(
@@ -122,7 +120,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: Text(
                           'Investimento Inicial',
                           style: TextStyle(
@@ -132,13 +130,13 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: TextField(
                           controller: inicialController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
-                              border: OutlineInputBorder(),
+                              border: null,
                               hintText: '0,00',
                               prefixText: 'R\$ ',
                               hintStyle: TextStyle(
@@ -149,7 +147,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: Text(
                           'Investimento Mensal',
                           style: TextStyle(
@@ -159,13 +157,13 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: TextField(
                             controller: mensalController,
                             decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white,
-                                border: OutlineInputBorder(),
+                                border: null,
                                 hintText: '0,00',
                                 prefixText: 'R\$ ',
                                 hintStyle: TextStyle(
@@ -176,13 +174,13 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: TextField(
                           controller: percentController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
-                              border: OutlineInputBorder(),
+                              border: null,
                               hintText: '% ao mês',
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -192,13 +190,13 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: TextField(
                           controller: periodoController,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white,
-                              border: OutlineInputBorder(),
+                              border: null,
                               hintText: 'Período em meses',
                               hintStyle: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -208,7 +206,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(6),
                         child: Text(
                           'Resultado: R\$ ${resultado}',
                           style: TextStyle(
@@ -256,7 +254,7 @@ class _CalculateInfoState extends State<CalculateInfo> {
                 ),
               ),
               style: TextButton.styleFrom(
-                backgroundColor: const Color(0xfff54657),
+                backgroundColor: const Color(0xfff5756c),
                 minimumSize: const Size(300, 20),
               ),
             ),

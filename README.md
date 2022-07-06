@@ -1,5 +1,9 @@
 # Simulador de Investimentos
 
+Objetivo                                                      | Resultado
+:------------------------------------------------------------:|:-------------------------:
+<img alt="Objetivo" src="assets/objetivo.png" width="200px" />      |  <img alt="Resultado" src="assets/resultado.png" width="200px" />
+
 Um projeto simples para simular investimentos financeiros. Este projeto tem como objetivo aprender a
 criar aplicativos básicos com Flutter através da criação de uma tela baseada em um design simples.
 
